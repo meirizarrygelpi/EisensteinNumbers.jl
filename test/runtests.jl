@@ -251,8 +251,8 @@ end
 
 # /
 @test begin
-    x = Eisenstein(-50 // 9, -19 // 91)
-    y = Eisenstein(-1 // 55, 91 // 8)
+    x = Eisenstein(Int128(-50) // 9, -19 // 91)
+    y = Eisenstein(Int128(-1) // 55, 91 // 8)
     z = x * y
     l = z / y
     r = x
@@ -261,8 +261,8 @@ end
 
 # \
 @test begin
-    x = Eisenstein(-50 // 9, -19 // 91)
-    y = Eisenstein(-1 // 55, 91 // 8)
+    x = Eisenstein(Int128(-50) // 9, -19 // 91)
+    y = Eisenstein(Int128(-1) // 55, 91 // 8)
     z = x * y
     l = x \ z
     r = y
@@ -271,16 +271,16 @@ end
 
 # /: Eisenstein and Real
 @test begin
-    a = 69 // 47
-    z = Eisenstein(33 // 28, 13 // 35)
+    a = Int128(69) // 47
+    z = Eisenstein(Int128(33) // 28, 13 // 35)
     l = a / z
     r = a * inv(z)
     l == r
 end
 
 @test begin
-    a = 6 // 19
-    b = -25 // 71
+    a = Int128(6) // 19
+    b = Int128(-25) // 71
     c = 34 // 1
     l = Eisenstein(b, c) / a
     r = Eisenstein(b / a, c / a)
@@ -293,16 +293,16 @@ end
 
 # \: Eisenstein and Real
 @test begin
-    a = 69 // 47
-    z = Eisenstein(33 // 28, 13 // 35)
+    a = Int128(69) // 47
+    z = Eisenstein(Int128(33) // 28, 13 // 35)
     l = z \ a
     r = inv(z) * a
     l == r
 end
 
 @test begin
-    a = 6 // 19
-    b = -25 // 71
+    a = Int128(6) // 19
+    b = Int128(-25) // 71
     c = 34 // 1
     l = a \ Eisenstein(b, c)
     r = Eisenstein(a \ b, a \ c)
