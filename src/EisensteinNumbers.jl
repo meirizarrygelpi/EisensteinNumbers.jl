@@ -1,5 +1,19 @@
+__precompile__()
+
 module EisensteinNumbers
 
-# package code goes here
+import Base: +, -, *, /, \, real, isreal, conj, inv, abs, abs2, show, zero, one, iszero
 
-end # module
+"Error when finding the inverse of zero."
+const ZeroInverse = "inverse of zero"
+
+"Error when the denominator in a quotient is zero."
+const ZeroDenominator = "denominator is zero"
+
+include("Eisenstein.jl")
+
+export Eisenstein, EisensteinFloat32, EisensteinFloat64, EisensteinFloat128,
+       EisensteinInt16, EisensteinInt32, EisensteinInt64, EisensteinInt128, EisensteinInt256
+export unreal, random, associates, ω, omega
+
+end
