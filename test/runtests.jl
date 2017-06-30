@@ -245,6 +245,10 @@ end
     l == r
 end
 
+@test_throws ErrorException begin
+    inv(zero(Eisenstein{Int}))
+end
+
 # /
 @test begin
     x = Eisenstein(-50 // 9, -19 // 91)
@@ -283,6 +287,10 @@ end
     l == r
 end
 
+@test_throws ErrorException begin
+    Eisenstein(3.1, 4.2) / 0.0
+end
+
 # \: Eisenstein and Real
 @test begin
     a = 69 // 47
@@ -299,6 +307,10 @@ end
     l = a \ Eisenstein(b, c)
     r = Eisenstein(a \ b, a \ c)
     l == r
+end
+
+@test_throws ErrorException begin
+    0.0 \ Eisenstein(3.1, 4.2)
 end
 
 # associates
