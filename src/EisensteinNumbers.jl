@@ -2,7 +2,7 @@ __precompile__()
 
 module EisensteinNumbers
 
-import Base: +, -, *, /, \, real, isreal, conj, inv, abs, abs2, show, zero, one, iszero
+import Base: +, -, *, /, \, real, isreal, conj, inv, abs2, show, zero, one, iszero
 
 "Error when finding the inverse of zero."
 const ZeroInverse = "inverse of zero"
@@ -14,6 +14,6 @@ include("Eisenstein.jl")
 
 export Eisenstein, EisensteinFloat32, EisensteinFloat64, EisensteinFloat128,
        EisensteinInt16, EisensteinInt32, EisensteinInt64, EisensteinInt128, EisensteinInt256
-export unreal, random, associates, ω, omega
+export unreal, random, associates, ω, omega, asarray
 
 end

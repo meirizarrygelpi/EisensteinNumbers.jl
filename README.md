@@ -1,7 +1,5 @@
-# EisensteinNumbers
+# EisensteinNumbers.jl
 
-[![Build Status](https://travis-ci.org/meirizarrygelpi/EisensteinNumbers.jl.svg?branch=master)](https://travis-ci.org/meirizarrygelpi/EisensteinNumbers.jl)
+[![Build Status](https://travis-ci.org/meirizarrygelpi/EisensteinNumbers.jl.svg?branch=master)](https://travis-ci.org/meirizarrygelpi/EisensteinNumbers.jl) [![Build status](https://ci.appveyor.com/api/projects/status/f8dqcr437odgih0x?svg=true)](https://ci.appveyor.com/project/meirizarrygelpi/eisensteinnumbers-jl) [![Coverage Status](https://coveralls.io/repos/meirizarrygelpi/EisensteinNumbers.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/meirizarrygelpi/EisensteinNumbers.jl?branch=master) [![codecov.io](http://codecov.io/github/meirizarrygelpi/EisensteinNumbers.jl/coverage.svg?branch=master)](http://codecov.io/github/meirizarrygelpi/EisensteinNumbers.jl?branch=master)
 
-[![Coverage Status](https://coveralls.io/repos/meirizarrygelpi/EisensteinNumbers.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/meirizarrygelpi/EisensteinNumbers.jl?branch=master)
-
-[![codecov.io](http://codecov.io/github/meirizarrygelpi/EisensteinNumbers.jl/coverage.svg?branch=master)](http://codecov.io/github/meirizarrygelpi/EisensteinNumbers.jl?branch=master)
+Arithmetic for Eisenstein numbers (a generalization of [Eisenstein integers](https://en.wikipedia.org/wiki/Eisenstein_integer) beyond integer components) in Julia.
