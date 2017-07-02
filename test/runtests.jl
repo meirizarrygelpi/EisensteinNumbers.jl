@@ -25,7 +25,28 @@ end
 # real
 @test begin
     l = real(Eisenstein(1, 2))
+    r = 0
+    l == r
+end
+
+@test begin
+    l = real(Eisenstein(1, 0))
     r = 1
+    l == r
+end
+
+# imag
+@test begin
+    l = imag(Eisenstein(1, 2))
+    r = sqrt(3)
+    l == r
+end
+
+# complex
+@test begin
+    z = Eisenstein(1.2, 3.4)
+    l = complex(z)
+    r = complex(real(z), imag(z))
     l == r
 end
 
@@ -38,7 +59,7 @@ end
 
 # unreal: Real
 @test begin
-    l = unreal(10)
+    l = unreal(Eisenstein(1, 0))
     r = 0
     l == r
 end

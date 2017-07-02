@@ -1,3 +1,5 @@
+import Unreal: unreal
+
 """
     Eisenstein{T <: Real} <: Number
 
@@ -40,7 +42,20 @@ const ω = Eisenstein(false, true)
 
 # Real part
 function real(z::Eisenstein)
-    z.l
+    z.l - (z.r / 2)
+end
+
+# Imaginary part
+function imag(z::Eisenstein)
+    z.r * sqrtof3div2
+end
+
+function Complex(z::Eisenstein)
+    Complex(real(z), imag(z))
+end
+
+function complex(z::Eisenstein)
+    Complex(z)
 end
 
 # Unreal part
@@ -48,16 +63,12 @@ function unreal(z::Eisenstein)
     z.r
 end
 
-function unreal(a::Real)
-    zero(a)
-end
-
 function isreal(z::Eisenstein)
-    iszero(unreal(z))
+    iszero(z.r)
 end
 
 function asarray(z::Eisenstein)
-    vcat(real(z), unreal(z))
+    vcat(z.l, z.r)
 end
 
 function iszero(z::Eisenstein)
@@ -90,14 +101,14 @@ end
 
 function show(io::IO, z::Eisenstein)
     print(io, "[1: ")
-    print(io, real(z))
+    print(io, z.l)
     print(io, ", ω: ")
-    print(io, unreal(z))
+    print(io, z.r)
     print(io, "]")
 end
 
 function conj(z::Eisenstein)
-    Eisenstein(real(z) - unreal(z), -(unreal(z)))
+    Eisenstein(z.l - z.r, -(z.r))
 end
 
 function (+)(z::Eisenstein)
@@ -105,50 +116,50 @@ function (+)(z::Eisenstein)
 end
 
 function (+)(x::Eisenstein, y::Eisenstein)
-    Eisenstein(real(x) + real(y), unreal(x) + unreal(y))
+    Eisenstein(x.l + y.l, x.r + y.r)
 end
 
 function (+)(a::Real, z::Eisenstein)
-    Eisenstein(a + real(z), unreal(z))
+    Eisenstein(a + z.l, z.r)
 end
 
 function (+)(z::Eisenstein, a::Real)
-    Eisenstein(real(z) + a, unreal(z))
+    Eisenstein(z.l + a, z.r)
 end
 
 function (-)(z::Eisenstein)
-    Eisenstein(-(real(z)), -(unreal(z)))
+    Eisenstein(-(z.l), -(z.r))
 end
 
 function (-)(x::Eisenstein, y::Eisenstein)
-    Eisenstein(real(x) - real(y), unreal(x) - unreal(y))
+    Eisenstein(x.l - y.l, x.r - y.r)
 end
 
 function (-)(a::Real, z::Eisenstein)
-    Eisenstein(a - real(z), -(unreal(z)))
+    Eisenstein(a - z.l, -(z.r))
 end
 
 function (-)(z::Eisenstein, a::Real)
-    Eisenstein(real(z) - a, unreal(z))
+    Eisenstein(z.l - a, z.r)
 end
 
 function (*)(x::Eisenstein, y::Eisenstein)
     Eisenstein(
-        (real(x) * real(y)) - (unreal(x) * unreal(y)),
-        (real(x) * unreal(y)) + (unreal(x) * real(y)) - (unreal(x) * unreal(y)),
+        (x.l * y.l) - (x.r * y.r),
+        (x.l * y.r) + (x.r * y.l) - (x.r * y.r),
     )
 end
 
 function (*)(a::Real, z::Eisenstein)
-    Eisenstein(a * real(z), a * unreal(z))
+    Eisenstein(a * z.l, a * z.r)
 end
 
 function (*)(z::Eisenstein, a::Real)
-    Eisenstein(real(z) * a, unreal(z) * a)
+    Eisenstein(z.l * a, z.r * a)
 end
 
 function abs2(z::Eisenstein)
-    (real(z))^(2) + (unreal(z))^(2) - (real(z) * unreal(z))
+    (z.l)^(2) + (z.r)^(2) - (z.l * z.r)
 end
 
 function inv(z::Eisenstein)
@@ -180,7 +191,7 @@ function (/)(z::Eisenstein, a::Real)
         error(ZeroDenominator)
     end
     
-    Eisenstein(real(z) / a, unreal(z) / a)
+    Eisenstein(z.l / a, z.r / a)
 end
 
 function (\)(a::Real, z::Eisenstein)
@@ -188,7 +199,7 @@ function (\)(a::Real, z::Eisenstein)
         error(ZeroDenominator)
     end
     
-    Eisenstein(a \ real(z), a \ unreal(z))
+    Eisenstein(a \ z.l, a \ z.r)
 end
 
 function associates(z::Eisenstein{T}) where T <: Real
