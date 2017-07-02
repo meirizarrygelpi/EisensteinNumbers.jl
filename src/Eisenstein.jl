@@ -12,17 +12,12 @@ struct Eisenstein{T <: Real} <: Number
     Eisenstein{T}(l::T, r::T) where {T <: Real} = new(l, r)
 end
 
-# Floats
-const EisensteinFloat32 = Eisenstein{Float16}
-const EisensteinFloat64 = Eisenstein{Float32}
-const EisensteinFloat128 = Eisenstein{Float64}
-
-# Ints
-const EisensteinInt16 = Eisenstein{Int8}
-const EisensteinInt32 = Eisenstein{Int16}
-const EisensteinInt64 = Eisenstein{Int32}
-const EisensteinInt128 = Eisenstein{Int64}
-const EisensteinInt256 = Eisenstein{Int128}
+const Eisenstein16 = Eisenstein{Int8}
+const Eisenstein32 = Eisenstein{Int16}
+const Eisenstein64 = Eisenstein{Int32}
+const Eisenstein128 = Eisenstein{Int64}
+const Eisenstein256 = Eisenstein{Int128}
+const EisensteinBigInt = Eisenstein{BigInt}
 
 # Constructors
 function Eisenstein(a::T, b::T) where T <: Real
@@ -47,7 +42,7 @@ end
 
 # Imaginary part
 function imag(z::Eisenstein)
-    z.r * sqrtof3div2
+    z.r * halfsqrt3
 end
 
 function Complex(z::Eisenstein)
